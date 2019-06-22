@@ -15,15 +15,15 @@ col.on('value', function(snapshot) {
     const keys = Object.keys(childData);
     arr.push(childData[str])
     if (keys[0]=="CO2"){
-    document.getElementById("carbon_level").innerHTML=arr[arr.length-1];
+    document.getElementById("carbon_level").innerHTML=arr[arr.length-1] + " ppm";
     }
     if (keys[0]=="TVOC"){
-      document.getElementById("TVOC_level").innerHTML=arr[arr.length-1];
+      document.getElementById("TVOC_level").innerHTML=arr[arr.length-1] + " ppb";
     }
     if (keys[0]=="TEMP"){
-      document.getElementById("temp").innerHTML=arr[arr.length-1];
+      document.getElementById("temp").innerHTML=arr[arr.length-1] + " C";
     }
-    if(arr.length > 30){
+    if(arr.length > 75){
       arr.shift();
     }
   });
@@ -40,7 +40,7 @@ col.on('value', function(snapshot) {
     var time = childData['Time'].substring(10,childData['Time'].length -7)
     labels.push (time)
     
-    if(labels.length > 30){
+    if(labels.length > 75){
       labels.shift();
     }
   });
