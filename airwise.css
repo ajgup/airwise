@@ -1,9 +1,15 @@
 h1{
 	text-align:center;
 }
-div{
+.jumbotron{
 	border: 10px solid grey;
 }
-table{
-	padding:500px;
+.charts{
+   width:55%;
+   margin-right:2%;
+   margin-left:2%;
+    float: left;
+    position: relative;
+    height:40vh;
+    width:40vw;
 }
