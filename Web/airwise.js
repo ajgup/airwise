@@ -6,7 +6,6 @@ var config = {
 };
 firebase.initializeApp(config);
 var data = firebase.database();
-
 function fireData(str) {
 var arr = []
 var col = data.ref(str);
@@ -49,7 +48,7 @@ col.on('value', function(snapshot) {
 return labels;
 }
 
-new Chart(document.getElementById("carbon-chart"), {
+Carbon_chart = new Chart(document.getElementById("carbon-chart"), {
   type: 'line',
   data: {
     labels: fireLabels('CO2'),
@@ -69,7 +68,7 @@ new Chart(document.getElementById("carbon-chart"), {
     
   }
 });
-new Chart(document.getElementById("tvoc-chart"), {
+TVOC_chart = new Chart(document.getElementById("tvoc-chart"), {
   type: 'line',
   data: {
     labels: fireLabels('TVOC'),
@@ -89,14 +88,14 @@ new Chart(document.getElementById("tvoc-chart"), {
     
   }
 });
-new Chart(document.getElementById("temp-chart"), {
+TEMP_chart = new Chart(document.getElementById("temp-chart"), {
   type: 'line',
   data: {
     labels: fireLabels('TEMP'),
     datasets: [{ 
         data: fireData('TEMP'),
         label: "Temperature",
-        borderColor: "#f44242",
+        borderColor: "#0fff43",
         fill: false
       }
     ]
@@ -116,3 +115,5 @@ new Chart(document.getElementById("temp-chart"), {
     
   }
 });
+setTimeout(function() { Carbon_chart.update(); TVOC_chart.update(); TEMP_chart.update()},1000);
+
