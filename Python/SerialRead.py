@@ -3,7 +3,7 @@ from lib import lib
 import pyAesCrypt
 from firebase import firebase
 import datetime
-
+import time
 firebase = firebase.FirebaseApplication('https://airwisedata.firebaseio.com/',None)
 threshold = 5000
 v = str(input("What COM port? \nENTER 5 OR 6:"))
@@ -15,7 +15,7 @@ else:
 a=open("CO2.txt", 'a')
 b = open("TVOC.txt",'a')
 c = open("TEMP.txt",'a')
-
+i=0
 while (1):
     stamp = str(datetime.datetime.now())
     co2 =str(ser.readline())[2:-5]
@@ -41,4 +41,5 @@ while (1):
     a.flush()
     b.flush()
     c.flush()
-        
+    time.sleep(2)
+
