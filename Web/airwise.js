@@ -65,7 +65,7 @@ new Chart(document.getElementById("tvoc-chart"), {
   options: {
     title: {
       display: true,
-      text: 'TVOC PPM'
+      text: 'TVOC ppb'
     },
     
   }
@@ -85,7 +85,7 @@ new Chart(document.getElementById("temp-chart"), {
   options: {
     title: {
       display: true,
-      text: 'Temperature'
+      text: 'Temperature Celsius'
     },
     scales: {
       yAxes: [{
