@@ -9,12 +9,13 @@
   <script src="https://www.gstatic.com/firebasejs/6.2.2/firebase-database.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
   <script src="lib.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <div class="jumbotron">
   <h1 class="display-4"></span>Welcome to AirWise!</h1>
-  <p style = "text-align:center;"class="lead">Here you will see real time data collected from sensors to determine whether it is safe for asthma patients to go out</p>
+  <p  id = "center_p" style = "font-family: 'Ubuntu', sans-serif;" class="lead">Here you will see real time data collected from sensors to determine whether it is safe for asthma patients to go out</p>
 
 
 <div class="charts">
@@ -53,9 +54,9 @@
 </table>
 
 <form>
-  <h1 style="text-align: center">Join our live phone updates!</h1>
+  <h1>Join our live phone updates!</h1>
   <div class="form-group">
-    <label for="phone_input">Phone Number</label>
+    <label style="font-family: 'Ubuntu' "for="phone_input">Phone Number</label>
     <input type="text" class="form-control" id="phone_input" aria-describedby="emailHelp" placeholder="Enter Phone Number">
     <small id="emailHelp" class="form-text text-muted">We'll never share your phone number with anyone.</small>
   </div>
@@ -65,7 +66,6 @@
   </div>
   <button type="button" onclick=sendText() id="to_space" class="btn btn-primary">Submit</button>
 </form>
-
 </div> 
 
 <script>

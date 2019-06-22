@@ -1,5 +1,6 @@
 h1{
-	text-align:center;
+    text-align:center;
+    font-family: 'Ubuntu', sans-serif;
 }
 .jumbotron{
 	border: 10px solid grey;
@@ -16,3 +17,10 @@ h1{
 #tospace{
     margin:auto;
 }
+#center_p{
+    text-align: center;
+}
+table{
+    font-family: 'Ubuntu';
+}
+
