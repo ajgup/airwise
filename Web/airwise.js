@@ -23,7 +23,7 @@ col.on('value', function(snapshot) {
     if (keys[0]=="TEMP"){
       document.getElementById("temp").innerHTML=arr[arr.length-1];
     }
-    if(arr.length > 30){
+    if(arr.length > 75){
       arr.shift();
     }
   });
@@ -40,7 +40,7 @@ col.on('value', function(snapshot) {
     var time = childData['Time'].substring(10,childData['Time'].length -7)
     labels.push (time)
     
-    if(labels.length > 30){
+    if(labels.length > 75){
       labels.shift();
     }
   });
