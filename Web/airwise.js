@@ -1,35 +1,34 @@
 var config = {
-   apiKey: "AIzaSyCuFBMM60uxPOft_v8i3gt2bp1dIEEjp-s",
-   authDomain: "airwisedata.firebaseapp.com",
-   databaseURL: "https://AirWiseData.firebaseio.com",
-   storageBucket: "bucket.appspot.com"
+  apiKey: "AIzaSyCuFBMM60uxPOft_v8i3gt2bp1dIEEjp-s",
+  authDomain: "airwisedata.firebaseapp.com",
+  databaseURL: "https://AirWiseData.firebaseio.com",
+  storageBucket: "bucket.appspot.com"
 };
 firebase.initializeApp(config);
 var data = firebase.database();
 
-function getFireBaseData(node,elementID) {
- var labels = []
- var arr = []
- var element = data.ref(node);
- element.on('value', function(snapshot) {
-   snapshot.forEach(function(childSnapshot) {
-     var data = childSnapshot.val();
-     extract(data)
-     //document.getElementById(elementID).innerHTML=data;
-     arr.push(data)
-   });
- });
- return arr;
-
+function fireData(str) {
+var arr = []
+var col = data.ref(str);
+col.on('value', function(snapshot) {
+  snapshot.forEach(function(childSnapshot) {
+    var childData = childSnapshot.val();
+    arr.push(childData[str])
+  });
+});
+return arr;
 }
-function updateLabels(){
-  getFireBaseData('CO2')
-}
-
-
-function extract(data){
-  console.log(data);
-
+function fireLabels(str) {
+var labels = []
+var col = data.ref(str);
+col.on('value', function(snapshot) {
+  snapshot.forEach(function(childSnapshot) {
+    var childData = childSnapshot.val();
+    var time = childData['Time'].substring(10,childData['Time'].length -7)
+    labels.push(time)
+  });
+});
+return labels;
 }
 new Chart(document.getElementById("carbon-chart"), {
   type: 'line',
