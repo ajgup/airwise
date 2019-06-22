@@ -24,12 +24,9 @@ col.on('value', function(snapshot) {
     if (keys[0]=="TEMP"){
       document.getElementById("temp").innerHTML=arr[arr.length-1];
     }
-<<<<<<< HEAD
     if(arr.length > 30){
       arr.shift();
     }
-=======
->>>>>>> c981add592322c5a9b6505ac49e4c52d5428a3fd
   });
 });
 return arr;
@@ -119,4 +116,3 @@ new Chart(document.getElementById("temp-chart"), {
     
   }
 });
-
