@@ -31,86 +31,71 @@ function extract(data){
   console.log(data);
 
 }
-
-function setGraphs(chart_name,axis_labels,chart_data,Element){
-  new Chart(document.getElementById(chart_name), {
-   type: 'line',
-   data: {
-     labels: axis_labels,
-     datasets: [{
-         data: getFireBaseData(Element),
-         label: "Carbon",
-         borderColor: "#3e95cd",
-         fill: false
-       }
-     ]
-   },
-   options: {
-     title: {
-       display: true,
-       text: 'Carbon ppm'
-     },
-    
-   }
- });
-}
 new Chart(document.getElementById("carbon-chart"), {
-   type: 'line',
-   data: {
-     labels: ["June 22"],
-     datasets: [{
-         data: getFireBaseData('CO2'),
-         label: "Carbon",
-         borderColor: "#3e95cd",
-         fill: false
-       }
-     ]
-   },
-   options: {
-     title: {
-       display: true,
-       text: 'Carbon ppm'
-     },
+  type: 'line',
+  data: {
+    labels: fireLabels('CO2'),
+    datasets: [{ 
+        data: fireData('CO2'),
+        label: "Carbon",
+        borderColor: "#3e95cd",
+        fill: false
+      }
+    ]
+  },
+  options: {
+    title: {
+      display: true,
+      text: 'Carbon ppm'
+    },
     
-   }
- });
+  }
+});
 new Chart(document.getElementById("tvoc-chart"), {
-   type: 'line',
-   data: {
-     labels: ["June 21", "June 22", "June 23", "June 24"],
-     datasets: [{
-         data: [0,1,2,3],
-         label: "TVOC",
-         borderColor: "#f44242",
-         fill: false
-       }
-     ]
-   },
-   options: {
-     title: {
-       display: true,
-       text: 'TVOC something'
-     },
+  type: 'line',
+  data: {
+    labels: fireLabels('TVOC'),
+    datasets: [{ 
+        data: fireData('TVOC'),
+        label: "TVOC",
+        borderColor: "#f44242",
+        fill: false
+      }
+    ]
+  },
+  options: {
+    title: {
+      display: true,
+      text: 'TVOC PPM'
+    },
     
-   }
- });
- new Chart(document.getElementById("temp-chart"), {
-   type: 'line',
-   data: {
-     labels: ["June 21", "June 22", "June 23", "June 24"],
-     datasets: [{
-         data: [20,20,20,20],
-         label: "Temp",
-         borderColor: "#f44242",
-         fill: false
-       }
-     ]
-   },
-   options: {
-     title: {
-       display: true,
-       text: 'temp something'
-     },
+  }
+});
+new Chart(document.getElementById("temp-chart"), {
+  type: 'line',
+  data: {
+    labels: fireLabels('TEMP'),
+    datasets: [{ 
+        data: fireData('TEMP'),
+        label: "Temperature",
+        borderColor: "#f44242",
+        fill: false
+      }
+    ]
+  },
+  options: {
+    title: {
+      display: true,
+      text: 'Temperature'
+    },
+    scales: {
+      yAxes: [{
+        ticks: {
+            stepSize: 0.2
+        }
+    }]
+    }
     
-   }
- });
+  }
+});
+
