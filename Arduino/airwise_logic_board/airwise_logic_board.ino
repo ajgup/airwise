@@ -61,9 +61,9 @@ void loop()
     lcd.print(temperature);
     Serial.println(temperature);
 
-    if (mySensor.getCO2() > 250 && mySensor.getCO2() <= 1000)
+    if (mySensor.getTVOC() >= 0 && mySensor.getTVOC() <= 325)
       lcd.setRGB(0,255,0);
-    else if (mySensor.getCO2() > 1000 && mySensor.getCO2() <=5000)
+    else if (mySensor.getTVOC() > 325 && mySensor.getTVOC() <=500)
       lcd.setRGB(255,255,0);
     else 
       lcd.setRGB(255,0,0);
