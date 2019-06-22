@@ -55,15 +55,15 @@
 <form>
   <h1 style="text-align: center">Join our live phone updates!</h1>
   <div class="form-group">
-    <label for="exampleInputEmail1">Phone Number</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Phone Number">
+    <label for="phone_input">Phone Number</label>
+    <input type="text" class="form-control" id="phone_input" aria-describedby="emailHelp" placeholder="Enter Phone Number">
     <small id="emailHelp" class="form-text text-muted">We'll never share your phone number with anyone.</small>
   </div>
   <div class="form-check">
     <input type="checkbox" class="form-check-input" id="exampleCheck1">
     <label class="form-check-label" for="exampleCheck1" aria-required="true">I accept the terms and conditions</label>
   </div>
-  <button id="to_space" type="submit" class="btn btn-primary">Submit</button>
+  <button type="button" onclick=sendText() id="to_space" class="btn btn-primary">Submit</button>
 </form>
 
 </div> 
@@ -71,18 +71,15 @@
 <script>
     // You should generally avoid sharing
     //  private tokens in *any* client side JavaScript
-    async function test () {
+    async function sendText () {
+      var num = document.getElementById("phone_input").value;
       lib = lib({token: 'tok_nNP8SRAYjvoezpXn4u6GoNSFn9mEmVWWNH3PxCCJaoF1SAZtfNmKJQMu74DTsvRT'});
-  
       const sms = lib.utils.sms['@1.0.11'];
       let result = await sms({
-        to: "", // (required)
+        to: num, // (required)
         body: "You are being arrested for exhaling too much carbon" // (required)
       });
     }
-   
-    test();
-  
   </script>
 
 <script type = "text/javascript" src = "airwise.js"></script>
