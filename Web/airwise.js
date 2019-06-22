@@ -13,11 +13,23 @@ var col = data.ref(str);
 col.on('value', function(snapshot) {
   snapshot.forEach(function(childSnapshot) {
     var childData = childSnapshot.val();
+    const keys = Object.keys(childData);
     arr.push(childData[str])
+    if (keys[0]=="CO2"){
+    document.getElementById("carbon_level").innerHTML=arr[arr.length-1];
+    }
+    if (keys[0]=="TVOC"){
+      document.getElementById("TVOC_level").innerHTML=arr[arr.length-1];
+    }
+    if (keys[0]=="TEMP"){
+      document.getElementById("temp").innerHTML=arr[arr.length-1];
+    }
+    console.log(keys[0]);
   });
 });
 return arr;
 }
+
 function fireLabels(str) {
 var labels = []
 var col = data.ref(str);
