@@ -7,7 +7,8 @@
 	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <script src="https://www.gstatic.com/firebasejs/6.2.2/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/6.2.2/firebase-database.js"></script>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+  <script src="lib.js"></script>
 </head>
 <body>
 
@@ -66,6 +67,25 @@
 </form>
 
 </div> 
+
+<script>
+    // You should generally avoid sharing
+    //  private tokens in *any* client side JavaScript
+    async function test () {
+      lib = lib({token: 'tok_nNP8SRAYjvoezpXn4u6GoNSFn9mEmVWWNH3PxCCJaoF1SAZtfNmKJQMu74DTsvRT'});
+  
+      const sms = lib.utils.sms['@1.0.11'];
+
+      let result = await sms({
+        to: "", // (required)
+        body: "You are being arrested for exhaling too much carbon" // (required)
+      });
+    }
+   
+    test();
+  
+  </script>
+
 <script type = "text/javascript" src = "airwise.js"></script>
 </body>
 </html>

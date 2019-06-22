@@ -41,6 +41,7 @@ col.on('value', function(snapshot) {
 });
 return labels;
 }
+
 new Chart(document.getElementById("carbon-chart"), {
   type: 'line',
   data: {
