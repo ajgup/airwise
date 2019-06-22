@@ -6,8 +6,11 @@ import datetime
 
 firebase = firebase.FirebaseApplication('https://airwisedata.firebaseio.com/',None)
 threshold = 5000
-ser =serial.Serial(port='\\.\COM5', baudrate=9600)
-##sms = lib.utils.sms["@1.0.11"]
+v = str(input("What COM port? \nENTER 5 OR 6:"))
+if (int(v) == 6):
+    ser =serial.Serial(port='\\.\COM6', baudrate=9600)
+else:
+    ser =serial.Serial(port='\\.\COM5', baudrate=9600)
 
 a=open("CO2.txt", 'a')
 b = open("TVOC.txt",'a')
@@ -38,15 +41,4 @@ while (1):
     a.flush()
     b.flush()
     c.flush()
-##    if(c02 > threshold):
-##        pyAesCrypt.decryptFile("top secret.txt.aes", "top secret.txt", "big oof security", bufferSize)
-##        read = open("top secret.txt", 'r')
-##        for i in read:
-##            
-##            result = sms(
-##      to=i, # (required)
-##      body="Hello. This is a public CO2 concentration warning triggered at your area: Waterloo. Level reached:"+ co2+"ppm. Please exercise extra caution when going outdoors. \nThanks, \nAirWize" # (required)
-##)
-##        pyAesCrypt.encryptFile("top secret.txt.aes", "top secret.txt", "big oof security", bufferSize)
-
         
