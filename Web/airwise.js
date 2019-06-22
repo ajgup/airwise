@@ -24,7 +24,9 @@ col.on('value', function(snapshot) {
     if (keys[0]=="TEMP"){
       document.getElementById("temp").innerHTML=arr[arr.length-1];
     }
-    console.log(keys[0]);
+    if(arr.length > 30){
+      arr.shift();
+    }
   });
 });
 return arr;
@@ -37,7 +39,11 @@ col.on('value', function(snapshot) {
   snapshot.forEach(function(childSnapshot) {
     var childData = childSnapshot.val();
     var time = childData['Time'].substring(10,childData['Time'].length -7)
-    labels.push(time)
+    labels.push (time)
+    
+    if(labels.length > 30){
+      labels.shift();
+    }
   });
 });
 return labels;
