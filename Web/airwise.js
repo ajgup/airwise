@@ -24,7 +24,6 @@ col.on('value', function(snapshot) {
     if (keys[0]=="TEMP"){
       document.getElementById("temp").innerHTML=arr[arr.length-1];
     }
-    console.log(keys[0]);
   });
 });
 return arr;
