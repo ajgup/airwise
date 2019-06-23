@@ -35,6 +35,7 @@ col.on('value', function(snapshot) {
     if(arr.length > 30){
       arr.shift();
     }
+    Carbon_chart.update();
   });
 });
   return arr
@@ -121,4 +122,4 @@ TEMP_chart = new Chart(document.getElementById("temp-chart"), {
     },
   }
 });
- setTimeout(function() { Carbon_chart.update(); TVOC_chart.update(); TEMP_chart.update()},3000);
+ setTimeout(function() { Carbon_chart.update(); TVOC_chart.update(); TEMP_chart.update()},5000);
