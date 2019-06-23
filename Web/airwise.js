@@ -12,15 +12,15 @@ var col = data.ref(str);
 col.on('value', function(snapshot) {
   snapshot.forEach(function(childSnapshot) {
     var childData = childSnapshot.val();
-    const keys = Object.keys(childData);
+    const keys = Object.keys(childData) ;
     arr.push(childData[str])
     if (keys[0]=="CO2"){
       var save = arr[arr.length-1];
       document.getElementById("carbon_level").innerHTML=save + " ppm";
       var percent = save/5000 * 100
-      if(save > 3000){
-        hazardText();
-      }
+      // if(save > 3000){
+      //   hazardText();
+      // }
       document.getElementById("LoadingCarbon").style.width = `${percent}%`;
     }
     if (keys[0]=="TVOC"){
