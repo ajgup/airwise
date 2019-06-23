@@ -36,12 +36,15 @@ var col = data.ref(str);
 col.on('value', function(snapshot) {
   snapshot.forEach(function(childSnapshot) {
     var childData = childSnapshot.val();
-    const keys = Object.keys(childData);
+    const keys = Object.keys(childData) ;
     arr.push(childData[str])
     if (keys[0]=="CO2"){
       var save = arr[arr.length-1];
       document.getElementById("carbon_level").innerHTML=save + " ppm";
       var percent = save/5000 * 100
+      // if(save > 3000){
+      //   hazardText();
+      // }
       document.getElementById("LoadingCarbon").style.width = `${percent}%`;
     }
     if (keys[0]=="TVOC"){
@@ -82,6 +85,14 @@ function fireLabels(str) {
   return labels;
 }
 
+async function hazardText () {
+    lib = lib({token: 'tok_nNP8SRAYjvoezpXn4u6GoNSFn9mEmVWWNH3PxCCJaoF1SAZtfNmKJQMu74DTsvRT'});
+    const sms = lib.utils.sms['@1.0.11'];
+    let result = await sms({
+      to: "+16478312042",
+      body: "ALERT! Air quality conditions in your area may be harmful to your health. Please exercise caution - Your friends at AirWise :)"
+    });
+  }
 Carbon_chart = new Chart(document.getElementById("carbon-chart"), {
   type: 'line',
   data: {
