@@ -34,17 +34,18 @@ function fireData(str) {
 var arr = []
 var col = data.ref(str);
 col.on('value', function(snapshot) {
+  var carbonThreshold = 0
   snapshot.forEach(function(childSnapshot) {
-    var carbonThreshold = 0
+    
     var childData = childSnapshot.val();
     const keys = Object.keys(childData) ;
     arr.push(childData[str])
     if (keys[0]=="CO2"){
       var save = arr[arr.length-1];
+      carbonThreshold = save
       document.getElementById("carbon_level").innerHTML=save + " ppm";
       var percent = save/5000 * 100
       document.getElementById("LoadingCarbon").style.width = `${percent}%`;
-      carbonThreshold = save
     }
     if (keys[0]=="TVOC"){
       var save = arr[arr.length-1];
@@ -61,9 +62,12 @@ col.on('value', function(snapshot) {
     if(arr.length > 30){
       arr.shift();
     }
-    Carbon_chart.update();
+    Carbon_chart.update(0);
+    TVOC_chart.update(0);
+    TEMP_chart.update(0);
   });
-  if(carbonThreshold > 3000){
+  if(carbonThreshold > 5000){
+    console.log(carbonThreshold)
     hazardText();
   }
 });
