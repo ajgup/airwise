@@ -6,6 +6,30 @@ var config = {
 };
 firebase.initializeApp(config);
 var data = firebase.database();
+
+var dict;
+var ref = data.ref();
+ref.once('value')
+ .then(function (snap) {
+  dict = snap.val();
+  console.log('snap.val()', dict);
+  var CO2_tolerance = dict["CO2_tolerance"];
+  var CO2_average = dict["CO2_average"];
+  var TVOC_tolerance = dict["TVOC_tolerance"];
+  var TVOC_average = dict["TVOC_average"];
+
+  var upper = Math.round(CO2_average+CO2_tolerance);
+  var lower = Math.round(CO2_average-CO2_tolerance);
+
+  var upperTVOC = Math.round(TVOC_average+TVOC_tolerance);
+  var lowerTVOC = Math.round(TVOC_average-TVOC_tolerance);
+
+  document.getElementById("carbon_predicted").innerHTML=lower + " - " + upper;
+  document.getElementById("TVOC_predicted").innerHTML=lowerTVOC + " - " + upperTVOC; 
+ });
+
+
+
 function fireData(str) {
 var arr = []
 var col = data.ref(str);
@@ -103,7 +127,7 @@ TEMP_chart = new Chart(document.getElementById("temp-chart"), {
     datasets: [{ 
         data: fireData('TEMP'),
         label: "Temperature",
-        borderColor: "#0fff43",
+        borderColor: "#FF8000",
         fill: false
       }
     ]
