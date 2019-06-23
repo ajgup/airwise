@@ -25,7 +25,7 @@ def Filtering(filter_upperbound,filter_lowerbound,y_intercept,file):
         InitialTimeValues.append(int(i)) 
 
     for i in range(len(InitialDataPoints)):
-        if (InitialDataPoints[i]>=filter_lowerbound and InitialDataPoints[i] <=filter_upperbound):
+        if (InitialDataPoints[i]>filter_lowerbound and InitialDataPoints[i] <=filter_upperbound):
             FilteredDataPoints.append(InitialDataPoints[i])
             FilteredTimeValues.append(InitialTimeValues[i])        
             
