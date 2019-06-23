@@ -15,37 +15,46 @@ col.on('value', function(snapshot) {
     const keys = Object.keys(childData);
     arr.push(childData[str])
     if (keys[0]=="CO2"){
-    document.getElementById("carbon_level").innerHTML=arr[arr.length-1] + " ppm";
+      var save = arr[arr.length-1];
+      document.getElementById("carbon_level").innerHTML=save + " ppm";
+      var percent = save/5000 * 100
+      document.getElementById("LoadingCarbon").style.width = `${percent}%`;
     }
     if (keys[0]=="TVOC"){
+      var save = arr[arr.length-1];
       document.getElementById("TVOC_level").innerHTML=arr[arr.length-1] + " ppb";
+      var percent = save/500 * 100
+      document.getElementById("LoadingTVOC").style.width = `${percent}%`;
     }
     if (keys[0]=="TEMP"){
+      var save = arr[arr.length-1];
       document.getElementById("temp").innerHTML=arr[arr.length-1] + " C";
-    }
-    if(arr.length > 75){
+      var percent = save/50 * 100
+      document.getElementById("LoadingTEMP").style.width = `${percent}%`;
+    } 
+    if(arr.length > 30){
       arr.shift();
     }
   });
 });
-return arr;
+  return arr
 }
 
 function fireLabels(str) {
-var labels = []
-var col = data.ref(str);
-col.on('value', function(snapshot) {
-  snapshot.forEach(function(childSnapshot) {
-    var childData = childSnapshot.val();
-    var time = childData['Time'].substring(10,childData['Time'].length -7)
-    labels.push (time)
-    
-    if(labels.length > 75){
-      labels.shift();
-    }
+  var labels = []
+  var col = data.ref(str);
+  col.on('value', function(snapshot) {
+    snapshot.forEach(function(childSnapshot) {
+      var childData = childSnapshot.val();
+      var time = childData['Time'].substring(10,childData['Time'].length -7)
+      labels.push (time)
+      
+      if(labels.length > 30){
+        labels.shift();
+      }
+    });
   });
-});
-return labels;
+  return labels;
 }
 
 Carbon_chart = new Chart(document.getElementById("carbon-chart"), {
@@ -65,7 +74,6 @@ Carbon_chart = new Chart(document.getElementById("carbon-chart"), {
       display: true,
       text: 'Carbon ppm'
     },
-    
   }
 });
 TVOC_chart = new Chart(document.getElementById("tvoc-chart"), {
@@ -85,7 +93,6 @@ TVOC_chart = new Chart(document.getElementById("tvoc-chart"), {
       display: true,
       text: 'TVOC ppb'
     },
-    
   }
 });
 TEMP_chart = new Chart(document.getElementById("temp-chart"), {
@@ -111,9 +118,7 @@ TEMP_chart = new Chart(document.getElementById("temp-chart"), {
             stepSize: 0.2
         }
     }]
-    }
-    
+    },
   }
 });
-setTimeout(function() { Carbon_chart.update(); TVOC_chart.update(); TEMP_chart.update()},1000);
-
+ setTimeout(function() { Carbon_chart.update(); TVOC_chart.update(); TEMP_chart.update()},3000);

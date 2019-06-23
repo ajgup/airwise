@@ -16,18 +16,6 @@
 <div class="jumbotron">
   <h1 class="display-4"></span>Welcome to AirWise!</h1>
   <p  id = "center_p" style = "font-family: 'Ubuntu', sans-serif;" class="lead">Here you will see real time data collected from sensors to determine whether it is safe for asthma patients to go out</p>
-
-
-<div class="charts">
-     <canvas id="carbon-chart"></canvas>
- </div>
- <div class="charts">
-     <canvas id="tvoc-chart"></canvas>
- </div>
- <div class="charts">
-     <canvas id="temp-chart"></canvas>
- </div>
-
  <hr>
 
 <table class="table">
@@ -35,23 +23,51 @@
     <tr>
       <th scope="col">Element</th>
       <th scope="col">Quantity</th>
+      <th scope="col">Hazard levels</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th scope="row">C02</th>
       <td id="carbon_level"></td>
+      <td>
+        <div class="progress">
+          <div id ="LoadingCarbon" class="progress-bar bg-info" style="width:20%"></div>
+        </div>
+    </td>
     </tr>
     <tr>
       <th scope="row">TVOC</th>
       <td id="TVOC_level"></td>
+      <td>
+        <div class="progress">
+          <div id ="LoadingTVOC" class="progress-bar bg-info" style="width:20%"></div>
+        </div> 
+    </td>
     </tr>
     <tr>
       <th scope="row">Temperature</th>
       <td id="temp"></td>
+      <td>
+        <div class="progress">
+          <div id ="LoadingTEMP" class="progress-bar bg-info" style="width:20%"></div>
+        </div>
+    </td>
     </tr>
   </tbody>
 </table>
+
+<div class ="row">
+  <div class="charts">
+    <canvas id="carbon-chart"></canvas>
+  </div>
+  <div class="charts">
+      <canvas id="tvoc-chart"></canvas>
+  </div>
+  <div class="charts">
+      <canvas id="temp-chart"></canvas>
+  </div>
+</div>
 
 <form>
   <h1>Join our live phone updates!</h1>
@@ -67,21 +83,28 @@
   <button type="button" onclick=sendText() id="to_space" class="btn btn-primary">Submit</button>
 </form>
 </div> 
-
 <script>
     // You should generally avoid sharing
     //  private tokens in *any* client side JavaScript
     async function sendText () {
       var num = document.getElementById("phone_input").value;
-      lib = lib({token: 'tok_nNP8SRAYjvoezpXn4u6GoNSFn9mEmVWWNH3PxCCJaoF1SAZtfNmKJQMu74DTsvRT'});
-      const sms = lib.utils.sms['@1.0.11'];
-      let result = await sms({
-        to: num, // (required)
-        body: "You are being arrested for exhaling too much carbon" // (required)
-      });
+      if(num.length >= 12){
+        lib = lib({token: 'tok_nNP8SRAYjvoezpXn4u6GoNSFn9mEmVWWNH3PxCCJaoF1SAZtfNmKJQMu74DTsvRT'});
+        const sms = lib.utils.sms['@1.0.11'];
+        alert("Message sending! Let it take two minutes to send.")
+        let result = await sms({
+          to: num,
+          body: "This is a message from AirWise! You are now subscribed!"
+        });
+      }
+      else{
+        alert("Please include \"+1\" at the start (no spaces or dashes).")
+      }
     }
   </script>
 
 <script type = "text/javascript" src = "airwise.js"></script>
+
+
 </body>
 </html>

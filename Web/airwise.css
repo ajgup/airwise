@@ -23,4 +23,7 @@ h1{
 table{
     font-family: 'Ubuntu';
 }
-
+.progress{
+    border: 3px solid black; 
+    width: 70%;
+}
