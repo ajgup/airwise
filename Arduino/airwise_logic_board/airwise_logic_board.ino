@@ -1,4 +1,4 @@
-#include <Wire.h>
+  #include <Wire.h>
 #include "rgb_lcd.h"
 
 rgb_lcd lcd;
@@ -67,7 +67,7 @@ void loop()
       lcd.setRGB(255,255,0);
     else 
       lcd.setRGB(255,0,0);
-  delay(500);
+  delay(3000);
   }
-  delay(10);
+  //delay(10);
 }
